@@ -30,7 +30,7 @@ function onSubmitBtn(e) {
   e.preventDefault();
   const { amount, delay, step } = formValue;
   let currentDelay = parseInt(delay);
-  for (let i = 0; i < amount; i++) {
+  for (let i = 1; i < amount; i++) {
     createPromise(i, currentDelay)
       .then(({ position, delay }) => {
         Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
