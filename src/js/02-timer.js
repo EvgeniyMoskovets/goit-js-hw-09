@@ -8,6 +8,7 @@ import 'flatpickr/dist/flatpickr.min.css';
 const timer = document.querySelectorAll('.value');
 const selector = document.querySelector('#datetime-picker');
 const button = document.querySelector('button');
+let timerId;
 
 button.disabled = true;
 
@@ -19,7 +20,7 @@ const options = {
   onClose(selectedDates) {
     const dateNow = new Date();
     if (selectedDates[0] < dateNow) {
-      window.alert('Please choose a date in the future');
+      Report.failure('Please choose a date in the future');
     } else {
       button.disabled = false;
     }
@@ -32,8 +33,8 @@ button.addEventListener('click', onClickBtn);
 
 function onClickBtn() {
   const selectedDate = selector._flatpickr.selectedDates[0];
-  let timerId = setInterval(() => {
-    updateTimer(selectedDate);
+  timerId = setInterval(() => {
+    return updateTimer(selectedDate);
   }, 1000);
   button.disabled = true;
 }
@@ -53,7 +54,7 @@ function updateTimer(selectedDate) {
 
   if (ms > 0 && ms < 1000) {
     clearInterval(timerId);
-    Report.success('Time is up!', '');
+    Report.success('Time is up!');
   }
 }
 
