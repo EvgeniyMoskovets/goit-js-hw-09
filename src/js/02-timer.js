@@ -1,3 +1,5 @@
+import { Report } from 'notiflix/build/notiflix-report-aio';
+
 // Описаний в документації
 import flatpickr from 'flatpickr';
 // Додатковий імпорт стилів
@@ -40,14 +42,18 @@ function updateTimer(selectedDate) {
   const ms = selectedDate.getTime() - Date.now();
   const { days, hours, minutes, seconds } = convertMs(ms);
 
-  timer[0].textContent = days;
-  timer[1].textContent = hours;
-  timer[2].textContent = minutes;
-  timer[3].textContent = seconds;
+  timer[0].textContent = formatTime(days);
+  timer[1].textContent = formatTime(hours);
+  timer[2].textContent = formatTime(minutes);
+  timer[3].textContent = formatTime(seconds);
+
+  function formatTime(e) {
+    return e.toString().padStart(2, '0');
+  }
 
   if (ms > 0 && ms < 1000) {
     clearInterval(timerId);
-    alert('Time is up!');
+    Report.success('Time is up!', '');
   }
 }
 
