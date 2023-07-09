@@ -53,7 +53,7 @@ function updateTimer(selectedDate) {
   }
 
   if (ms > 0 && ms < 1000) {
-    clearInterval(timerId);
+    return clearInterval(timerId);
     Report.success('Time is up!');
   }
 }
