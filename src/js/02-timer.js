@@ -32,7 +32,7 @@ button.addEventListener('click', onClickBtn);
 
 function onClickBtn() {
   const selectedDate = selector._flatpickr.selectedDates[0];
-  timerId = setInterval(() => {
+  let timerId = setInterval(() => {
     updateTimer(selectedDate);
   }, 1000);
   button.disabled = true;
